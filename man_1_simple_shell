@@ -1,0 +1,13 @@
+.TH SIMPLE_SHELL 1 "April 03, 2022" "Holberton School" "General Commands Manual"
+
+.SH NAME
+.B hsh\fR \- A simple command interpreter (simple_shell)
+
+.SH SYNOPSIS
+.B ./hsh\fR [options] [command] | file
+
+.SH DESCRIPTION
+.LP
+.B hsh\fR is a simple UNIX command language interpreter capable of executing commands Interactivly from \fBSTDIN\fR or piped from 
+a file.
+It emulates basic functionality of the \fBsh\fR shell.
