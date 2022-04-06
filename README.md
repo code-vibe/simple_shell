@@ -1,6 +1,5 @@
 # Holberton Project: simple_shell
-<img src="https://assets.website-files.com/6105315644a26f77912a1ada/610540e8b4cd6969794fe673_Holberton_School_logo-04-04.svg" height="60%" width="50%">
-</h1><h1 align ="center">
+</h1><img src="https://assets.website-files.com/6105315644a26f77912a1ada/610540e8b4cd6969794fe673_Holberton_School_logo-04-04.svg" height="60%" width="50%"><h1 align ="center">
 
 ## Table of Contents
 * [Description](#description)
@@ -63,7 +62,7 @@ The simple_shell is designed to execute commands in a similar manner to sh, howe
 
 ## Example of Use
 Run the executable in your terminal after compiling:
-```
+
 $ ls
 
 ## Bugs
