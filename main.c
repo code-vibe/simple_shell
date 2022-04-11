@@ -114,7 +114,7 @@ char *validate_input(char **arguments, char **argv)
 	char **tokens_path, holder_env[1024];
 	int i = 0;
 
-	if (arguments[0][0] == '/')
+	if (arguments[0][0] == '/' || arguments[0][0] == '.')
 	{
 		new_arguments = arguments[0];
 		if ((access(new_arguments, F_OK) == -1))
