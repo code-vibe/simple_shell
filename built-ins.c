@@ -42,13 +42,13 @@ int hsh_exit(char **args __attribute__((unused)),
  */
 
 int hsh_env(char **args, char *input_stdin, int *exit_status)
-{	
+{
 	int i = 0;
 
 	(void)args;
 	(void)input_stdin;
 	(void)exit_status;
-	
+
 
 	if (environ[i] == NULL)
 	{
