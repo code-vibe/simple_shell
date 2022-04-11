@@ -54,3 +54,49 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	}
 	return (0);
 }
+
+/**
+ * hsh_tokenizer - Function that splits commands with delimiters
+ *
+ * @input: string what comes from the input
+ *
+ * Return: double pointer to tokens
+ */
+
+
+char **hsh_tokenizer(char *input)
+{
+	int buffer_1 = 64, buffer_2 = 0, position = 0;
+	char **tokens = malloc(buffer_1 * sizeof(char *));
+	char **backup_tokens;
+	char delimiters[] = " \n\t";
+
+	if (!tokens)
+	{
+		fprintf(stderr, "memory allocation error\n");
+		exit(EXIT_FAILURE);
+	}
+
+	while ((tokens[position] = strtok(input, delimiters)) != NULL)
+	{
+		position++;
+
+
+		if (position >= buffer_1)
+		{
+			buffer_2 = buffer_1 * 2;
+			backup_tokens = tokens;
+			tokens = _realloc(tokens, buffer_1, buffer_2 * sizeof(char *));
+			if (!tokens)
+			{
+				free(backup_tokens);
+				free(tokens);
+				fprintf(stderr, "memory allocation error\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+		input = NULL;
+	}
+	tokens[position] = NULL;
+	return (tokens);
+}
