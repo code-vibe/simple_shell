@@ -178,7 +178,7 @@ char **tokenizer_path(char *input)
 		exit(EXIT_FAILURE);
 	}
 
-	while ((tokens_new[position] = str_tok(input, delimiters)) != NULL)
+	while ((tokens_new[position] = strtok(input, delimiters)) != NULL)
 	{
 		position++;
 
