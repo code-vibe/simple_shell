@@ -200,3 +200,48 @@ char **tokenizer_path(char *input)
 	tokens_new[position] = NULL;
 	return (tokens_new);
 }
+
+/**
+ * hsh_execute - Function that executes the commands
+ *
+ * @arguments: tokens that were previously separated with delimiters
+ * @argv: argv
+ * Return: Always 1 (success).
+ *
+ */
+
+int hsh_execute(char **arguments, char **argv)
+{
+	pid_t pid;
+	int status;
+	char *new_arguments;
+
+	new_arguments = validate_input(arguments, argv);
+	if (strcmp(new_arguments, "Fail access") == 0)
+		return (1);
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(new_arguments, arguments, environ) == -1)
+		{
+			perror("execve fail");
+			free(new_arguments);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else if (pid < 0)
+	{
+		perror("Error forking");
+		free(new_arguments);
+		return (1);
+	}
+	else
+	{
+		wait(&status);
+		if (arguments[0][0] != '/')
+			free(new_arguments);
+		return (1);
+	}
+	return (1);
+}
