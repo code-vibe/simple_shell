@@ -20,7 +20,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	size_t size = 0;
 	ssize_t n = 0;
 
-	while (status_return)
+	while (status_return && n != EOF)
 	{
 		size = 0;
 
