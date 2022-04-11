@@ -13,7 +13,8 @@ int hsh_exit(char **args __attribute__((unused)),
 {
 	free(args);
 	free(input_stdin);
-	exit(98);
+	exit(EXIT_SUCCESS);
+	return (0);
 }
 /**
  * hsh_env - Function that print enviromental
