@@ -119,7 +119,7 @@ char *validate_input(char **arguments, char **argv)
 		new_arguments = arguments[0];
 		if ((access(new_arguments, F_OK) == -1))
 		{
-			printf("%s: 1: %s:  not found\n", argv[0], arguments[0]);
+			fprintf(stderr, "%s: No such file or directory\n", argv[0]);
 			return ("Fail access");
 		}
 	}
@@ -146,7 +146,7 @@ char *validate_input(char **arguments, char **argv)
 			i++;
 		}
 		free(tokens_path);
-		printf("%s: 1: %s:  not found\n", argv[0], arguments[0]);
+		fprintf(stderr, "%s: No such file or directory\n", argv[0]);
 		return ("Fail access");
 	}
 	return (new_arguments);
