@@ -39,3 +39,36 @@ int hsh_env(char **args __attribute__((unused)),
 
 	return (1);
 }
+/**
+ * hsh_execute_builtins - Function that execute a
+ * correct builtin command
+ *
+ * @args: arguments
+ * @input_stdin: input of stdin
+ * @argv: argv
+ *
+ * Return: execute function of choose builtin
+ * or return hsh_execute
+ */
+
+int hsh_execute_builtins(char **args, char *input_stdin, char **argv)
+{
+	int i = 0;
+
+	choose_builtins_t options[] = {
+		{"exit", hsh_exit},
+		{"env", hsh_env},
+		{NULL, NULL}
+	};
+
+	while (options[i].name_builtin)
+	{
+		if (strcmp(options[i].name_builtin, args[0]) == 0)
+		{
+			return ((int)((*options[i].func_builtin)(args, input_stdin)));
+		}
+		i++;
+	}
+	return (hsh_execute(args, argv));
+
+}
