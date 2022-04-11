@@ -37,11 +37,8 @@ char *str_concat(char *s1, char *s2);
 int hsh_exit(char **args, char *input_stdin, int *exit_status);
 int hsh_execute_builtins(char **args, char *input_stdin,
 			 char **argv, int *exit_status);
-int hsh_env(char **args __attribute__((unused)),
-	    char *input_stdin __attribute__((unused)),
-	    int *exit_status __attribute__((unused)));
-int hsh_cd(char **args, char *input_stdin __attribute__((unused)));
-
+int hsh_env(char **args, char *input_stdin, int *exit_status);
+int hsh_cd(char **args, char *input_stdin, int *exit_status);
 char *_getenv(char *name);
 void sigintH(int signum);
 
