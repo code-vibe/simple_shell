@@ -222,7 +222,7 @@ int hsh_execute(char **arguments, char **argv)
 		if (execve(new_arguments, arguments, environ) == -1)
 		{
 			perror("execve fail");
-			free(new_arguments);
+			/*free(new_arguments);*/
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -235,7 +235,7 @@ int hsh_execute(char **arguments, char **argv)
 	else
 	{
 		wait(&status);
-		if (arguments[0][0] != '/')
+		if (arguments[0][0] != '/' && arguments[0][0] != '.')
 			free(new_arguments);
 		return (1);
 	}
