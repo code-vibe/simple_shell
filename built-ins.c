@@ -11,10 +11,23 @@
 int hsh_exit(char **args __attribute__((unused)),
 		char *input_stdin __attribute__((unused)))
 {
+	int output_exit = 0;
+
+	if (args[1] == NULL)
+	{
+		free(args);
+		free(input_stdin);
+		exit(0);
+	}
+	if (args[2] != NULL)
+	{
+		printf("exit: too many arguments\n");
+		return (0);
+	}
+	output_exit = atoi(args[1]);	
 	free(args);
 	free(input_stdin);
-	exit(EXIT_SUCCESS);
-	return (0);
+	exit(output_exit);
 }
 /**
  * hsh_env - Function that print enviromental
