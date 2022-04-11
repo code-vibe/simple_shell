@@ -24,7 +24,7 @@ int hsh_exit(char **args __attribute__((unused)),
 		printf("exit: too many arguments\n");
 		return (0);
 	}
-	output_exit = atoi(args[1]);	
+	output_exit = atoi(args[1]);
 	free(args);
 	free(input_stdin);
 	exit(output_exit);
