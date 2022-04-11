@@ -4,12 +4,14 @@
  * hsh_exit - Function exit built in
  *
  * @args: arguments
- * @input_stdin: input of stdin
+ * @input_stdin: input of stdini
+ * @exit_status: exit status
  * Return: Exit success
  */
 
 int hsh_exit(char **args __attribute__((unused)),
-		char *input_stdin __attribute__((unused)))
+		char *input_stdin __attribute__((unused)),
+		int *exit_status)
 {
 	int output_exit = 0;
 
@@ -17,7 +19,7 @@ int hsh_exit(char **args __attribute__((unused)),
 	{
 		free(args);
 		free(input_stdin);
-		exit(0);
+		exit(*exit_status);
 	}
 	if (args[2] != NULL)
 	{
@@ -34,14 +36,19 @@ int hsh_exit(char **args __attribute__((unused)),
  *
  * @args: arguments
  * @input_stdin: input of stdin
+ * @exit_status: exit status
  *
  * Return: Always 1 (success)
  */
 
-int hsh_env(char **args __attribute__((unused)),
-		char *input_stdin __attribute__((unused)))
-{
+int hsh_env(char **args, char *input_stdin, int *exit_status)
+{	
 	int i = 0;
+
+	(void)args;
+	(void)input_stdin;
+	(void)exit_status;
+	
 
 	if (environ[i] == NULL)
 	{
@@ -60,12 +67,14 @@ int hsh_env(char **args __attribute__((unused)),
  * @args: arguments
  * @input_stdin: input of stdin
  * @argv: argv
+ * @exit_status: exit status
  *
  * Return: execute function of choose builtin
  * or return hsh_execute
  */
 
-int hsh_execute_builtins(char **args, char *input_stdin, char **argv)
+int hsh_execute_builtins(char **args, char *input_stdin, char **argv,
+		int *exit_status)
 {
 	int i = 0;
 
@@ -79,10 +88,10 @@ int hsh_execute_builtins(char **args, char *input_stdin, char **argv)
 	{
 		if (strcmp(options[i].name_builtin, args[0]) == 0)
 		{
-			return ((int)((*options[i].func_builtin)(args, input_stdin)));
+			return ((int)((*options[i].func_builtin)(args, input_stdin, exit_status)));
 		}
 		i++;
 	}
-	return (hsh_execute(args, argv));
+	return (hsh_execute(args, argv, exit_status));
 
 }

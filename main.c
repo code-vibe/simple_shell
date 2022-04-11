@@ -17,7 +17,7 @@ int main(int argc __attribute__((unused)),
 {
 	char **arguments = NULL;
 	char *input_stdin = NULL;
-	int status_return = 1;
+	int status_return = 1, exit_status = 0;
 	size_t size = 0;
 	ssize_t n = 0;
 
@@ -43,7 +43,8 @@ int main(int argc __attribute__((unused)),
 		arguments = hsh_tokenizer(input_stdin);
 		if (*arguments[0] == '\0')
 			continue;
-		status_return = hsh_execute_builtins(arguments, input_stdin, argv);
+		status_return = hsh_execute_builtins(arguments, input_stdin,
+				argv, &exit_status);
 
 		free(input_stdin);
 		free(arguments);
@@ -202,11 +203,12 @@ char **tokenizer_path(char *input)
  *
  * @arguments: tokens that were previously separated with delimiters
  * @argv: argv
+ * @exit_status: exit status
  * Return: Always 1 (success).
  *
  */
 
-int hsh_execute(char **arguments, char **argv)
+int hsh_execute(char **arguments, char **argv, int *exit_status)
 {
 	pid_t pid;
 	int status;
@@ -234,7 +236,9 @@ int hsh_execute(char **arguments, char **argv)
 	}
 	else
 	{
-		wait(&status);
+		waitpid(-1, &status, 0);
+		if (WEXITSTATUS(status))
+			*exit_status = WEXITSTATUS(status);
 		if (arguments[0][0] != '/' && arguments[0][0] != '.')
 			free(new_arguments);
 		return (1);

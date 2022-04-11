@@ -19,7 +19,7 @@
 typedef struct choose_builtin
 {
 	char *name_builtin;
-	int (*func_builtin)(char **, char *);
+	int (*func_builtin)(char **, char *, int *);
 
 } choose_builtins_t;
 
@@ -29,12 +29,13 @@ char **tokenizer_path(char *input);
 char *validate_input(char **arguments, char **argv);
 char *str_tok(char *buffer,  char *d);
 extern char **environ;
-int hsh_execute(char **arguments, char **argv);
+int hsh_execute(char **arguments, char **argv, int *exit_status);
 char **hsh_tokenizer(char *input);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *str_concat(char *s1, char *s2);
-int hsh_exit(char **args, char *input_stdin);
-int hsh_execute_builtins(char **args, char *input_stdin, char **argv);
+int hsh_exit(char **args, char *input_stdin, int *exit_status);
+int hsh_execute_builtins(char **args, char *input_stdin, char **argv, int *exit_status);
+int hsh_env(char **args __attribute__((unused)), char *input_stdin __attribute__((unused)), int *exit_status __attribute__((unused)));
 
 void sigintH(int signum);
 
