@@ -8,9 +8,33 @@
 #include <errno.h>
 #include <sys/wait.h>
 
+/**
+ * struct choose_builtin - Validate the builtin command
+ *
+ * @name_builtin: name of builtin command
+ *
+ * @func_builtin: Pointer to the function of builtin command
+ */
+
+typedef struct choose_builtin
+{
+	char *name_builtin;
+	int (*func_builtin)(char **, char *);
+
+} choose_builtins_t;
 
 
-
+int validate_spaces(char *input);
+char **tokenizer_path(char *input);
+char *validate_input(char **arguments, char **argv);
+char *str_tok(char *buffer,  char *d);
+extern char **environ;
+int hsh_execute(char **arguments, char **argv);
+char **hsh_tokenizer(char *input);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *str_concat(char *s1, char *s2);
+int hsh_exit(char **args, char *input_stdin);
+int hsh_execute_builtins(char **args, char *input_stdin, char **argv);
 
 
 
