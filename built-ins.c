@@ -73,6 +73,9 @@ int hsh_env(char **args, char *input_stdin, int *exit_status)
 int hsh_cd(char **args, char *input_stdin, int *exit_status)
 {
 	int stat;
+	char s[128];
+
+	getcwd(s, sizeof(s));
 
 	(void)input_stdin;
 	(void)exit_status;
@@ -88,8 +91,12 @@ int hsh_cd(char **args, char *input_stdin, int *exit_status)
 
 	if (stat == -1)
 		perror("cd had an error");
+
+	setenv("OLDPWD", s, 1);
+	setenv("PWD", getcwd(s, sizeof(s)), 1);
 	return (1);
 }
+
 /**
  * hsh_execute_builtins - Function that execute a
  * correct builtin command
