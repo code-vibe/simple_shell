@@ -19,7 +19,7 @@ Standard functions and system calls employed in simple_shell include:
 	 `access, execve, exit, fork, free, fstat, getline, malloc, perror, signal, stat, wait, write.`
 
 ## File Structure
-* [header.h](header.h) -Program header file
+* [main.h](main.h) -Program header file
 
 ## Requirements
 
