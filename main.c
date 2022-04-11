@@ -155,3 +155,48 @@ char *validate_input(char **arguments, char **argv)
 	}
 	return (new_arguments);
 }
+
+/**
+ * tokenizer_path - Function that tokenizer path
+ *
+ * @input: path
+ *
+ * Return: Double pointer to tokens of paths
+ */
+
+
+char **tokenizer_path(char *input)
+{
+	int buffer_1 = 64, buffer_2 = 0, position = 0;
+	char **tokens_new = malloc(buffer_1 * sizeof(char *));
+	char **backup_tokens_1;
+	char delimiters[] = ":";
+
+	if (!tokens_new)
+	{
+		fprintf(stderr, "memory allocation error\n");
+		exit(EXIT_FAILURE);
+	}
+
+	while ((tokens_new[position] = str_tok(input, delimiters)) != NULL)
+	{
+		position++;
+
+		if (position >= buffer_1)
+		{
+			buffer_2 = buffer_1 * 2;
+			backup_tokens_1 = tokens_new;
+			tokens_new = _realloc(tokens_new, buffer_1, buffer_2 * sizeof(char *));
+			if (!tokens_new)
+			{
+				free(backup_tokens_1);
+				free(tokens_new);
+				fprintf(stderr, "memory allocation error\n");
+				exit(EXIT_FAILURE);
+			}
+		}
+		input = NULL;
+	}
+	tokens_new[position] = NULL;
+	return (tokens_new);
+}
