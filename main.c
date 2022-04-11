@@ -23,7 +23,6 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	while (status_return && n != EOF)
 	{
 		size = 0;
-
 		status_return = isatty(STDIN_FILENO);
 
 		if (status_return)
@@ -34,6 +33,8 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 			free(input_stdin);
 			break;
 		}
+		if (n == 1)
+			continue;
 		if (n == EOF)
 		{
 			free(input_stdin);
