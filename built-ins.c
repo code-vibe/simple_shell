@@ -4,16 +4,18 @@
  * hsh_exit - Function exit built in
  *
  * @args: arguments
- * @input_stdin: input of stdini
+ * @input_stdin: input of stdin
  * @exit_status: exit status
  * Return: Exit success
  */
 
-int hsh_exit(char **args __attribute__((unused)),
-		char *input_stdin __attribute__((unused)),
-		int *exit_status)
+int hsh_exit(char **args, char *input_stdin, int *exit_status)
 {
 	int output_exit = 0;
+
+	(void)args;
+	(void)input_stdin;
+	(void)exit_status;
 
 	if (args[1] == NULL)
 	{
@@ -60,6 +62,34 @@ int hsh_env(char **args, char *input_stdin, int *exit_status)
 
 	return (1);
 }
+
+/**
+ * hsh_cd - change directory
+ * @args: argument array
+ * @input_stdin: input of stdin
+ * @exit_status: exit status
+ * Return: 1 (success)
+ */
+int hsh_cd(char **args, char *input_stdin, int *exit_status)
+{
+	int stat;
+
+	(void)input_stdin;
+	(void)exit_status;
+
+	if (args[1] == NULL)
+		stat = chdir(getenv("HOME"));
+	else if (strcmp(args[1], "-") == 0)
+		stat = chdir(getenv("OLDPWD"));
+	else if (strcmp(args[1], "~") == 0)
+		stat = chdir(getenv("HOME"));
+	else
+		stat = chdir(args[1]);
+
+	if (stat == -1)
+		perror("cd had an error");
+	return (1);
+}
 /**
  * hsh_execute_builtins - Function that execute a
  * correct builtin command
@@ -81,6 +111,7 @@ int hsh_execute_builtins(char **args, char *input_stdin, char **argv,
 	choose_builtins_t options[] = {
 		{"exit", hsh_exit},
 		{"env", hsh_env},
+		{"cd", hsh_cd},
 		{NULL, NULL}
 	};
 
