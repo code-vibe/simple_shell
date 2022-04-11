@@ -36,6 +36,6 @@ char *str_concat(char *s1, char *s2);
 int hsh_exit(char **args, char *input_stdin);
 int hsh_execute_builtins(char **args, char *input_stdin, char **argv);
 
-
+void sigintH(int signum);
 
 #endif /*MAIN_H*/

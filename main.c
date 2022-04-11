@@ -12,7 +12,8 @@
  * Return: Always 0.
  */
 
-int main(int argc, char **argv)
+int main(int argc __attribute__((unused)),
+	 char **argv __attribute__((unused)))
 {
 	char **arguments = NULL;
 	char *input_stdin = NULL;
@@ -20,8 +21,6 @@ int main(int argc, char **argv)
 	size_t size = 0;
 	ssize_t n = 0;
 
-	if (argc < 1)
-		return (0);
 	while (status_return && n != EOF)
 	{
 		size = 0;
@@ -29,6 +28,7 @@ int main(int argc, char **argv)
 
 		if (status_return)
 			write(STDOUT_FILENO, "#Shell_CL$ ", 11);
+		signal(SIGINT, sigintH); /* ignore Ctrl + c */
 		n = getline(&input_stdin, &size, stdin);
 		if (n == -1)
 		{
