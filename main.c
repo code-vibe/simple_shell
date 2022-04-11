@@ -52,7 +52,10 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 		free(input_stdin);
 		free(arguments);
 	}
-	return (0);
+	if (isatty(STDIN_FILENO))
+		printf("\n");
+	exit (98);
+	/*return (0);*/
 }
 
 /**
