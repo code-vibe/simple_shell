@@ -3,6 +3,7 @@
 
 ## Table of Contents
 * [Description](#description)
+* [Flowchart](#flowchart)
 * [File Structure](#file-structure)
 * [Requirements](#requirements)
 * [Installation](#installation)
@@ -29,15 +30,16 @@ In other words, simple_shell is a program that reads commands provided, check if
     file1 file2 file3 file4
     test@ubuntu:~/simple_shell$
 
+## Flowchart
 
 ## File Structure
 * [main.h](main.h) -Program header file
 * [main.c](main.c) - essential functions to the shell
-* [built-ins.c] (built-ins.c) - Major builtin functions
-* [built-ins2.c] (built-ins2.c) - Builtin functions that involves 'setenv', 'unsetenv'  builtin command
-* [helper_functions.c] (helper_functions.c) - Functions utils
-* [only_spaces.c] (only_spaces.c) -
-* [_realloc.c] (_realloc.c) - function that reallocates a used memory block
+* [built-ins.c](built-ins.c) - Major builtin functions
+* [built-ins2.c](built-ins2.c) - Builtin functions that involves 'setenv', 'unsetenv'  builtin command
+* [helper_functions.c](helper_functions.c) - Functions utils
+* [only_spaces.c](only_spaces.c) - Function that validates spaces, tabs or line break
+* [_realloc.c](_realloc.c) - function that reallocates a used memory block
 * [man_1_simple_shell](man_1_simple_shell) -  Shell Man page
 
 ## Requirements
