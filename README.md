@@ -31,6 +31,7 @@ In other words, simple_shell is a program that reads commands provided, check if
     test@ubuntu:~/simple_shell$
 
 ## Flowchart
+![Flowchart Simple Shell](https://raw.githubusercontent.com/luismch158158/simple_shell/master/flowchar_simpleshell.jpg)
 
 ## File Structure
 * [main.h](main.h) -Program header file
